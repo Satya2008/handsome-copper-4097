@@ -1,24 +1,28 @@
-package com.masai;
+package model;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+
 import java.io.Serializable;
+import java.util.Date;
 
-public class Crime implements Serializable {
+import controller.CrimeController;
+
+public class Crime  extends CrimeController implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int crimeId;
-	private String type;
+	private CrimeType type;
 	private String Desc;
 	private String psArea;
-	private String date;
+	private Date date;
 	private String victim;
 
-	public Crime(String type, String desc, String psArea, String date, String victim) {
+	public Crime(CrimeType type, String desc, String psArea, Date date, String victim) {
 		super();
 		this.crimeId = (int)(Math.random()*100000000);
 		this.type = type;
-		Desc = desc;
+		this.Desc = desc;
 		this.psArea = psArea;
 		this.date = date;
 		this.victim = victim;
@@ -32,11 +36,11 @@ public class Crime implements Serializable {
 		this.crimeId = crimeId;
 	}
 
-	public String getType() {
+	public CrimeType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(CrimeType type) {
 		this.type = type;
 	}
 
@@ -56,11 +60,11 @@ public class Crime implements Serializable {
 		this.psArea = psArea;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -72,23 +76,13 @@ public class Crime implements Serializable {
 		this.victim = victim;
 	}
 
-	
-	
-//	   ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("crime.txt"));
- public void writeCrime() throws FileNotFoundException, IOException {
-	 try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("crime.txt"))){
-		 oos.writeObject(this);
-	 }catch(IOException e)  {
-		 e.printStackTrace();
-	 }
-	
- }
-
 	@Override
 	public String toString() {
 		return "Crime [crimeId=" + crimeId + ", type=" + type + ", Desc=" + Desc + ", psArea=" + psArea + ", date="
 				+ date + ", victim=" + victim + "]";
-	} 
+	}
+
+
    
    
 }
